@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var pilots = ['Brennen', 'Xin\'ui', 'Karas'];
+var pilots = [
+  { id: 1, name: 'Brennen'},
+  { id: 2, name: 'Xin\'ui'},
+  { id: 3, name: 'Karas'}
+];
 
 /* GET pilot listing. */
 router.get('/list', function(req, res, next) {

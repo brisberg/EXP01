@@ -1,7 +1,15 @@
 extends ../layouts/layout
 
+mixin pilotRow(pilot)
+  tr(id="pilot-#{ pilot.id }")
+    td= pilot.name
+
 block content
   h1 User List:
-  p #{ pilots[0] }
-  p #{ pilots[1] }
-  p #{ pilots[2] }
+  table
+    thead
+      tr
+        th Name
+    tbody
+      - each pilot in pilots
+        +pilotRow(pilot)
