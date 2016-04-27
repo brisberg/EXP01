@@ -1,9 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('pilot', { plots: ['Brennen', 'Xin\'ui', 'Karas'] });
+var pilots = ['Brennen', 'Xin\'ui', 'Karas'];
+
+/* GET pilot listing. */
+router.get('/list', function(req, res, next) {
+  res.render('pilot', { pilots: pilots });
+});
+
+router.get('/:id', function(req,res,next) {
+  var pilot_id = req.params.id;
+  res.send(pilots[pilot_id])
 });
 
 module.exports = router;
