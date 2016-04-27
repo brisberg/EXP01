@@ -1,0 +1,18 @@
+Node example design doc
+
+
+An always online multiplayer text based version of X3
+Players can select a pilot to play
+Each pilot has a ship with a limited cargo capacity
+Can fly between stations
+Each station sells a subset of goods for different prices
+  Stations may have limited inventory
+
+
+‘/’ index page
+  Global info
+  Leaderboard
+  Button for ‘Start anew Pilot’ and ‘Load a Pilot’
+
+‘/pilots’ pilots page
+  List of selectable pilots
