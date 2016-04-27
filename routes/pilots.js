@@ -5,7 +5,7 @@ var pilots = ['Brennen', 'Xin\'ui', 'Karas'];
 
 /* GET pilot listing. */
 router.get('/list', function(req, res, next) {
-  res.render('pilot/pilot', { pilots: pilots });
+  res.render('pilot/pilot', { title: 'Pilot List', pilots: pilots });
 });
 
 router.get('/:id', function(req,res,next) {
