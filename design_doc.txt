@@ -1,5 +1,6 @@
 Node example design doc
 
+v1
 
 An always online multiplayer text based version of X3
 Players can select a pilot to play
@@ -16,3 +17,14 @@ Each station sells a subset of goods for different prices
 
 ‘/pilots’ pilots page
   List of selectable pilots
+  Selecting a pilot logs in as them and moves to their current system
+
+'/system' Star System information page
+  Lists image, name, and wares sold at the current system
+  Also shows the current Pilot's cargo and credits
+
+'/map' Star map
+  Main gameplay page
+  Shows a list of the possible planets
+    Mark where the player currently is
+    Button for each system to go to the System page
