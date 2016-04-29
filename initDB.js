@@ -11,12 +11,16 @@ var app = express()
 if (app.get('env') === 'development') {
     require('./app/config/database')('mongodb://localhost/exp01');
 
-    var appHelpers = require(path.join(__dirname, 'app/helpers/appHelpers'))
+    var Pilot = require('./app/models/pilotModel');
+    var User = require('./app/models/userModel');
 
     console.log("initDB");
 
+    // pilots
+    var p1 = new Pilot({ id: 1, name: "Brennen"});
+    p1.save();
 
-
+    //process.exit()
 }
 else {
     console.log('Only run initDb in development');
