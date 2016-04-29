@@ -6,9 +6,10 @@ var mongoose = require('mongoose')
 
 var schema = mongoose.Schema({
     id: Number,
-    name: String
+    name: String,
+    email: String
 })
 
-var Model = mongoose.model('PilotModel', schema)
+var Model = mongoose.model('UserModel', schema)
 
 module.exports = Model

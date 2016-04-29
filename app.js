@@ -5,25 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var packageJson = require('./package.json')
-
 var app = express();
-
-//app helpers
-var version = packageJson.version;
-var root = __dirname
-var appPath = function(path) {
-  return root + '/' + path
-}
-var model = function(path) {
-  return require(appPath("app/models/" + path))
-}
-var route = function(path) {
-  return require(appPath("app/routes/" + path))
-}
-var util = function(path) {
-  return require(appPath("app/utils/" + path))
-}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
@@ -41,6 +23,9 @@ app.use('/', route('index'));
 app.use('/pilot', route('pilots'));
 app.use('/system', route('systems'));
 app.use('/map', route('map'));
+
+// helpers
+var appHelpers = require(path.join(__dirname, 'app/helpers/appHelpers'))
 
 // db bootstrap
 require('./app/config/database')(process.env.DATABASE_URL || 'mongodb://localhost/exp01')
