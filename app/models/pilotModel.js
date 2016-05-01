@@ -5,7 +5,10 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-    name: String
+    name: String,
+    inventory: [
+      {ware: {type: mongoose.Schema.Types.ObjectId, ref: 'wares'}, quantity: Number}
+    ],
 });
 
 var Model = mongoose.model('pilots', schema);

@@ -11,9 +11,10 @@ var app = express();
 if (app.get('env') === 'development') {
     require('./app/config/database')('mongodb://localhost/exp01');
 
+
+    var Ware = require('./app/models/wareModel');
     var Pilot = require('./app/models/pilotModel');
     var User = require('./app/models/userModel');
-    var Ware = require('./app/models/wareModel');
 
     console.log("initDB");
 
@@ -34,7 +35,15 @@ if (app.get('env') === 'development') {
 
         // pilots
         console.log("saving Brennen");
-        new Pilot({name: "Brennen"}).save();
+        var brennen = new Pilot({name: "Brennen"});
+
+        Ware.findOne({ name: "Trillium"}, function(err, doc) {
+            console.log(" Ware doc: " + doc);
+            brennen.inventory.push({'ware': doc, 'quantity':5});
+            brennen.save();
+        });
+        brennen.save();
+
         console.log("saving Xin\'ui");
         new Pilot({name: "Xin\'ui"}).save();
         console.log("saving Karas2");

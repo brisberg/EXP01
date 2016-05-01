@@ -13,7 +13,7 @@ Each station sells a subset of goods for different prices
 ‘/’ index page
   Global info
   Leaderboard
-  Button for ‘Start anew Pilot’ and ‘Load a Pilot’
+  Button for ‘Start a new Pilot’ and ‘Load a Pilot’
 
 ‘/pilots’ pilots page
   List of selectable pilots
