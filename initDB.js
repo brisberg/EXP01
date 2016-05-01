@@ -13,8 +13,21 @@ if (app.get('env') === 'development') {
 
     var Pilot = require('./app/models/pilotModel');
     var User = require('./app/models/userModel');
+    var Ware = require('./app/models/wareModel');
 
     console.log("initDB");
+
+    Ware.remove({}, function(err) {
+        console.log('\ndropping Wares');
+
+        // wares
+        console.log("saving Trillium");
+        new Ware({name:'Trillium', baseValue:400}).save();
+        console.log("saving Dalaxian Wheat");
+        new Ware({name:'Dalaxian Wheat', baseValue:50}).save();
+        console.log("saving Microchips");
+        new Ware({name:'Microchips', baseValue:1000}).save();
+    });
 
     Pilot.remove({}, function(err) {
         console.log('\ndropping Pilots');

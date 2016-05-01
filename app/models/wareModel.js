@@ -6,13 +6,9 @@ var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
     name: String,
-    subTitle: String,
-    population: Number,
-    wares: [
-        {type: Schema.Types.ObjectId, ref: 'wares'}
-    ]
+    baseValue: Number,
 });
 
-var Model = mongoose.model('systems', schema);
+var Model = mongoose.model('wares', schema);
 
 module.exports = Model;
