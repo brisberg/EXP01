@@ -5,7 +5,7 @@
 var express = require('express');
 var path = require('path');
 
-var app = express()
+var app = express();
 
 // db bootstrap (development only)
 if (app.get('env') === 'development') {
@@ -16,11 +16,27 @@ if (app.get('env') === 'development') {
 
     console.log("initDB");
 
-    // pilots
-    var p1 = new Pilot({ id: 1, name: "Brennen"});
-    p1.save();
+    Pilot.remove({}, function(err) {
+        console.log('\ndropping Pilots');
 
-    //process.exit()
+        // pilots
+        console.log("saving Brennen");
+        new Pilot({ _id: 1, name: "Brennen"}).save();
+        console.log("saving Xin\'ui");
+        new Pilot({ _id: 2, name: "Xin\'ui"}).save();
+        console.log("saving Karas2");
+        new Pilot({ _id: 3, name: "Karas2"}).save();
+        console.log("saving Bria");
+        new Pilot({ _id: 4, name: "Bria"}).save();
+    });
+
+    User.remove({}, function(err) {
+        console.log('\ndropping Users');
+
+        // users
+        console.log("saving Brandon");
+        new User({ _id: 1, name: "Brandon", email: "brandon@example.com"}).save();
+    });
 }
 else {
     console.log('Only run initDb in development');

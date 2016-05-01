@@ -2,12 +2,6 @@ var express = require('express');
 var router = express.Router();
 var PilotModel = require('../models/pilotModel');
 
-var pilots = [
-  { id: 1, name: 'Brennen'},
-  { id: 2, name: 'Xin\'ui'},
-  { id: 3, name: 'Karas'}
-];
-
 /* GET pilot listing. */
 router.get('/list', function(req, res, next) {
   PilotModel.find({}, function(err, records) {
@@ -20,7 +14,7 @@ router.get('/list', function(req, res, next) {
 router.get('/:id', function(req,res,next) {
   var pilot_id = req.params.id;
 
-  PilotModel.findById(id, function(err, pilot) {
+  PilotModel.findById(pilot_id, function(err, pilot) {
     if (err) return res.status(422).send('Problem loading the pilot:', error.message);
     if (!pilot) return res.status(404).send('Couldn\'nt find the pilot');
 

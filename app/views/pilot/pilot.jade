@@ -1,11 +1,11 @@
-extends ../layouts/layout
+extends views/layouts/layout
 
 mixin pilotRow(pilot)
-  tr(id="pilot-#{ pilot.id }")
-    td: s(htrg="/pilot/#{ pilot.id }")= pilot.name
+  tr(id="pilot-#{ pilot._id }")
+    td: a(href="/pilot/#{ pilot._id }")= pilot.name
 
 block content
-  h1 User List:
+  h1 Pilot List:
   table
     thead
       tr

@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var packageJson = require('../../package.json');
+var packageJson = require('./package.json');
 
 var app = express();
 
@@ -31,7 +31,7 @@ var helper = function(path) {
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
-app.set('view options', { pretty: app.get('env') === 'development'})
+app.set('view options', { pretty: app.get('env') === 'development'});
 
 app.use(favicon(path.join(__dirname, 'app/public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -40,14 +40,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app/public')));
 
-app.use('/', appHelper.route('index'));
-app.use('/pilot', appHelper.route('pilots'));
-app.use('/system', appHelper.route('systems'));
-app.use('/map', appHelper.route('map'));
+app.use('/', route('index'));
+app.use('/pilot', route('pilots'));
+app.use('/system', route('systems'));
+app.use('/map', route('map'));
 
 
 // db bootstrap
-require('./app/config/database')(process.env.DATABASE_URL || 'mongodb://localhost/exp01')
+require('./app/config/database')(process.env.DATABASE_URL || 'mongodb://localhost/exp01');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
