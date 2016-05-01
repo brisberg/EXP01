@@ -9,7 +9,7 @@ var schema = mongoose.Schema({
     subTitle: String,
     population: Number,
     wares: [
-        {type: Schema.Types.ObjectId, ref: 'wares'}
+        {type: mongoose.Schema.Types.ObjectId, ref: 'wares'}
     ]
 });
 
