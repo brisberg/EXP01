@@ -21,13 +21,13 @@ if (app.get('env') === 'development') {
 
         // pilots
         console.log("saving Brennen");
-        new Pilot({ _id: 1, name: "Brennen"}).save();
+        new Pilot({name: "Brennen"}).save();
         console.log("saving Xin\'ui");
-        new Pilot({ _id: 2, name: "Xin\'ui"}).save();
+        new Pilot({name: "Xin\'ui"}).save();
         console.log("saving Karas2");
-        new Pilot({ _id: 3, name: "Karas2"}).save();
+        new Pilot({name: "Karas2"}).save();
         console.log("saving Bria");
-        new Pilot({ _id: 4, name: "Bria"}).save();
+        new Pilot({name: "Bria"}).save();
     });
 
     User.remove({}, function(err) {
@@ -35,7 +35,7 @@ if (app.get('env') === 'development') {
 
         // users
         console.log("saving Brandon");
-        new User({ _id: 1, name: "Brandon", email: "brandon@example.com"}).save();
+        new User({name: "Brandon", email: "brandon@example.com"}).save();
     });
 }
 else {

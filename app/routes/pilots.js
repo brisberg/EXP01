@@ -7,7 +7,7 @@ router.get('/list', function(req, res, next) {
   PilotModel.find({}, function(err, records) {
     if (err) return res.status(422).send('Problem loading the records:', err.message);
 
-    res.render('pilot/pilot', { title: 'Pilot List', pilots: records });
+    res.render('pilot/list', { title: 'Pilot List', pilots: records });
   })
 });
 

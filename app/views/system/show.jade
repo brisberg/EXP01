@@ -1,0 +1,18 @@
+extends ../layouts/layout
+
+block content
+  h1= name
+  p Welcome to #{ subTitle }
+  p Population: #{ population } billion
+
+  p Wares:
+  table
+    thead
+      tr
+        th Name
+        th Price
+    tbody
+      - each ware in wares
+        tr
+          td #{ ware.name }
+          td #{ ware.baseValue }

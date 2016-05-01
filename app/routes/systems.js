@@ -3,7 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('system/system', { title: 'System', name: 'Earth', subTitle: 'the Sol System', wares: ['Trillium', 'Dalaxian Wheat', 'Microchips']});
+  res.render('system/show', {
+    title: 'System',
+    name: 'Earth',
+    subTitle: 'the Sol System',
+    population: 8.54,
+    wares: [
+      {name:'Trillium', baseValue:400},
+      {name:'Dalaxian Wheat', baseValue:50},
+      {name:'Microchips', baseValue:1000}
+    ]});
 });
 
 module.exports = router;

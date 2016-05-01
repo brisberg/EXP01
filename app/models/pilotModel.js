@@ -5,10 +5,9 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-    _id: Number,
     name: String
 });
 
-var Model = mongoose.model('PilotModel', schema);
+var Model = mongoose.model('pilots', schema);
 
 module.exports = Model;
