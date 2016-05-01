@@ -14,7 +14,7 @@ function validateStringLength(value) {
 
 var schema = mongoose.Schema({
     name: String,
-    passwordHash: {type: String, required: true, validate: [validateStringLength, 'must be 8 characters or longer']},
+    passwordHash: {type: String, required: true, validate: [validateStringLength, 'is too short (minimum is ' + REQUIRED_PASSWORD_LENGTH + ' characters']},
     email: {type: String, required: true, unique: true, validate: [validate.email, 'is not a valid email address']}
 });
 

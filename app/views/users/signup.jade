@@ -1,10 +1,14 @@
 //
    Created by Brandon Risberg on 4/30/2016.
 
-extends ../layouts/home.jade
+extends ../layouts/layout.jade
 block content
    h1 Join teh web's premiere adventure venue
-   form.form-horizontal(action="/signupaction", method="post")
+   form.form-horizontal(action="/signup/signupaction", method="post")
+      .form-group
+         label.control-label.col-sm-2 Username
+         .col-sm-10
+            input(type="text", name="name")
       .form-group
          label.control-label.col-sm-2 Email
          .col-sm-10

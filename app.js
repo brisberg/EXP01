@@ -44,6 +44,7 @@ app.use('/', route('index'));
 app.use('/pilot', route('pilots'));
 app.use('/system', route('systems'));
 app.use('/map', route('map'));
+app.use('/signup', route('user'));
 
 
 // db bootstrap
