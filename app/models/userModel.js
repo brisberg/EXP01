@@ -3,11 +3,32 @@
  */
 
 var mongoose = require('mongoose'),
-    validate = require('mongoose-validate');
+    validate = require('mongoose-validate'),
+    bcrypt   = require('bcrypt-nodejs');
+var SALT_WORK_FACTOR = 10;
+var REQUIRED_PASSWORD_LENGTH = 8;
+
+function validateStringLength(value) {
+    return value && value.length >= REQUIRED_PASSWORD_LENGTH;
+}
 
 var schema = mongoose.Schema({
     name: String,
+    passwordHash: {type: String, required: true, validate: [validateStringLength, 'must be 8 characters or longer']},
     email: {type: String, required: true, unique: true, validate: [validate.email, 'is not a valid email address']}
+});
+
+schema.pre('save', function(next) {
+    var self = this;
+
+    if (!self.isModified('passwordHash')) return next;
+
+    bcrypt.hash(self.passwordHash, bcrypt.genSaltSync(SALT_WORK_FACTOR), null, function(err, hash) {
+        if (err) return next(err);
+
+        self.passwordHash = hash;
+        next();
+    })
 });
 
 var Model = mongoose.model('users', schema);

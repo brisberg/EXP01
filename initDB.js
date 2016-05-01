@@ -35,7 +35,7 @@ if (app.get('env') === 'development') {
 
         // users
         console.log("saving Brandon");
-        new User({name: "Brandon", email: "brandon@example.com"}).save();
+        new User({name: "Brandon", email: "brandon@example.com", passwordHash:"password"}).save();
     });
 }
 else {
