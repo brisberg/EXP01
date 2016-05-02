@@ -28,7 +28,7 @@ schema.pre('save', function(next) {
 
         self.passwordHash = hash;
         next();
-    })
+    });
 });
 
 var Model = mongoose.model('users', schema);

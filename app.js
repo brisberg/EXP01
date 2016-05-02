@@ -13,19 +13,19 @@ var app = express();
 var version = packageJson.version;
 var root = __dirname;
 var appPath = function(path) {
-  return root + '/' + path
+  return root + '/' + path;
 };
 var model = function(path) {
-  return require(appPath("app/models/" + path))
+  return require(appPath("app/models/" + path));
 };
 var route = function(path) {
-  return require(appPath("app/routes/" + path))
+  return require(appPath("app/routes/" + path));
 };
 var util = function(path) {
-  return require(appPath("app/utils/" + path))
+  return require(appPath("app/utils/" + path));
 };
 var helper = function(path) {
-  return require(appPath("app/helpers/" + path))
+  return require(appPath("app/helpers/" + path));
 };
 
 // view engine setup

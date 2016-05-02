@@ -65,8 +65,18 @@ if (app.get('env') === 'development') {
 
         // systems
         console.log('saving Earth');
-        new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:[]}).save();
+        var earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54});
+        earth.save();
 
+        Ware.find({ name: {$in: ['Trillium', 'Microchips']} },
+            function(err, docs) {
+                docs.map( function(ware) {
+                    console.log('\tselling ' + ware.name);
+                    earth.wares.push(ware);
+                });
+                earth.save();
+            }
+        );
     });
 }
 else {

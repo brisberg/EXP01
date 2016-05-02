@@ -8,7 +8,7 @@ router.get('/list', function(req, res, next) {
     if (err) return res.status(422).send('Problem loading the records:', err.message);
 
     res.render('pilot/list', { title: 'Pilot List', pilots: records });
-  })
+  });
 });
 
 router.get('/:id', function(req,res,next) {
@@ -18,8 +18,8 @@ router.get('/:id', function(req,res,next) {
     if (err) return res.status(422).send('Problem loading the pilot:', error.message);
     if (!pilot) return res.status(404).send('Couldn\'nt find the pilot');
 
-    res.send(pilot)
-  })
+    res.send(pilot);
+  });
 });
 
 module.exports = router;

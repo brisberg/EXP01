@@ -8,14 +8,8 @@ router.get('/', function(req, res, next) {
   System.findOne({}, function(err, record) {
     if (err) return res.status(422).send('Problem loading the system record:', err.message);
 
-    var systemR = record;
-
-    Ware.find({}, function(err, records) {
-      if (err) return res.status(422).send('Problem loading the wares records:', err.message);
-
-      res.render('system/show', { title: 'System', system:record, wares: records });
-    });
-  });
+      res.render('system/show', { title: 'System', system:record });
+  }).populate('wares');
 });
 
 module.exports = router;
