@@ -34,52 +34,69 @@ if (app.get('env') === 'development') {
 
             console.log('\ninserting Wares');
             // wares
-            console.log('saving Trillium');
+            console.log('adding Trillium');
             var trillium = new Ware({name:'Trillium', baseValue:400});
-            trillium.save();
-            console.log('saving Dalaxian Wheat');
+            console.log('adding Dalaxian Wheat');
             var dalaxianWheat = new Ware({name:'Dalaxian Wheat', baseValue:50});
-            dalaxianWheat.save();
-            console.log('saving Microchips');
+            console.log('adding Microchips');
             var microchips = new Ware({name:'Microchips', baseValue:1000});
             microchips.save();
 
             console.log('\ninserting Systems');
             // systems
-            console.log('saving Earth');
+            console.log('adding Earth');
             var earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:
                 [
                     trillium,
                     microchips
                 ]});
-            earth.save();
 
             // pilots
-            console.log('saving Brennen');
+            console.log('adding Brennen');
             var brennen = new Pilot({name: 'Brennen', inventory: [
                 { ware: trillium, quantity: 5 },
                 { ware: dalaxianWheat, quantity: 240 }
             ]});
-            brennen.save();
-            console.log('saving Xin\'ui');
+            console.log('adding Xin\'ui');
             var xin = new Pilot({name: 'Xin\'ui', inventory: [
                 { ware: dalaxianWheat, quantity: 120 }
             ]});
-            xin.save();
-            console.log('saving Karas');
+            console.log('adding Karas');
             var karas = new Pilot({name: 'Karas', inventory: [
                 { ware: microchips, quantity: 8 }
             ]});
-            karas.save();
-            console.log('saving Bria');
+            console.log('adding Bria');
             var bria = new Pilot({name: 'Bria'});
-            bria.save();
 
             console.log('\ninserting Users');
             // users
-            console.log('saving Brandon');
+            console.log('adding Brandon');
             var brandon = new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'});
-            brandon.save();
+
+            console.log('\nsaving Wares');
+            return trillium.save()
+            .then(function() {
+                return dalaxianWheat.save()
+            }).then(function() {
+                return microchips.save();
+            }).then(function() {
+                console.log('saving Systems');
+                return earth.save();
+            }).then(function() {
+                console.log('saving Pilots');
+                return brennen.save();
+            }).then(function() {
+                return xin.save();
+            }).then(function() {
+                return karas.save();
+            }).then(function() {
+                return bria.save();
+            }).then(function() {
+                console.log('saving Users');
+                return brandon.save();
+            });
+    }).then(function() {
+        process.exit();
     });
 }
 else {
