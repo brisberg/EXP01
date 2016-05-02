@@ -19,70 +19,67 @@ if (app.get('env') === 'development') {
 
     console.log('initDB');
 
-    Ware.remove({}, function(err) {
-        console.log('\ndropping Wares');
+    console.log('dropping Wares');
+    Ware.remove({})
+    .then(function() {
+        console.log('dropping Pilots');
+        return Pilot.remove({})
+    }).then(function() {
+        console.log('dropping Users');
+        return User.remove({})
+    }).then(function() {
+        console.log('dropping Systems');
+        return System.remove({})
+    }).then(function() {
 
-        // wares
-        console.log('saving Trillium');
-        new Ware({name:'Trillium', baseValue:400}).save();
-        console.log('saving Dalaxian Wheat');
-        new Ware({name:'Dalaxian Wheat', baseValue:50}).save();
-        console.log('saving Microchips');
-        new Ware({name:'Microchips', baseValue:1000}).save();
-    });
+            console.log('\ninserting Wares');
+            // wares
+            console.log('saving Trillium');
+            var trillium = new Ware({name:'Trillium', baseValue:400});
+            trillium.save();
+            console.log('saving Dalaxian Wheat');
+            var dalaxianWheat = new Ware({name:'Dalaxian Wheat', baseValue:50});
+            dalaxianWheat.save();
+            console.log('saving Microchips');
+            var microchips = new Ware({name:'Microchips', baseValue:1000});
+            microchips.save();
 
-    Pilot.remove({}, function(err) {
-        console.log('\ndropping Pilots');
+            console.log('\ninserting Systems');
+            // systems
+            console.log('saving Earth');
+            var earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:
+                [
+                    trillium,
+                    microchips
+                ]});
+            earth.save();
 
-        // pilots
-        console.log('saving Brennen');
-        var brennen = new Pilot({name: 'Brennen'});
-        brennen.save();
-
-        Ware.findOne({ name: 'Trillium'}, function(err, doc) {
-            brennen.inventory.push({'ware': doc, 'quantity':5});
-            console.log('\tBrennen carrying Trillium');
+            // pilots
+            console.log('saving Brennen');
+            var brennen = new Pilot({name: 'Brennen', inventory: [
+                { ware: trillium, quantity: 5 },
+                { ware: dalaxianWheat, quantity: 240 }
+            ]});
             brennen.save();
-        });
-        Ware.findOne({ name: 'Dalaxian Wheat'}, function(err, doc) {
-            brennen.inventory.push({'ware': doc, 'quantity':240});
-            console.log('\tBrennen carrying Dalaxian Wheat');
-            brennen.save();
-        });
+            console.log('saving Xin\'ui');
+            var xin = new Pilot({name: 'Xin\'ui', inventory: [
+                { ware: dalaxianWheat, quantity: 120 }
+            ]});
+            xin.save();
+            console.log('saving Karas');
+            var karas = new Pilot({name: 'Karas', inventory: [
+                { ware: microchips, quantity: 8 }
+            ]});
+            karas.save();
+            console.log('saving Bria');
+            var bria = new Pilot({name: 'Bria'});
+            bria.save();
 
-        console.log('saving Xin\'ui');
-        new Pilot({name: 'Xin\'ui'}).save();
-        console.log('saving Karas2');
-        new Pilot({name: 'Karas2'}).save();
-        console.log('saving Bria');
-        new Pilot({name: 'Bria'}).save();
-    });
-
-    User.remove({}, function(err) {
-        console.log('\ndropping Users');
-
-        // users
-        console.log('saving Brandon');
-        new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'}).save();
-    });
-
-    System.remove({}, function(err) {
-        console.log('\ndropping Systems');
-
-        // systems
-        console.log('saving Earth');
-        var earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54});
-        earth.save();
-
-        Ware.find({ name: {$in: ['Trillium', 'Microchips']} },
-            function(err, docs) {
-                docs.map( function(ware) {
-                    console.log('\tselling ' + ware.name);
-                    earth.wares.push(ware);
-                });
-                earth.save();
-            }
-        );
+            console.log('\ninserting Users');
+            // users
+            console.log('saving Brandon');
+            var brandon = new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'});
+            brandon.save();
     });
 }
 else {
