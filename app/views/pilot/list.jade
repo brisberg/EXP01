@@ -1,8 +1,8 @@
 extends ../layouts/layout
 
 mixin pilotRow(pilot)
-  tr(id="pilot-#{ list._id }")
-    td: a(href="/pilot/#{ list._id }")= list.name
+  tr(id="pilot-#{ pilot._id }")
+    td: a(href="/pilot/#{ pilot._id }")= pilot.name
 
 block content
   h1 Pilot List:
@@ -12,4 +12,4 @@ block content
         th Name
     tbody
       - each pilot in pilots
-        +pilotRow(list)
+        +pilotRow(pilot)

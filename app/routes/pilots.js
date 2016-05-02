@@ -11,6 +11,7 @@ router.get('/list', function(req, res, next) {
   });
 });
 
+/* GET specific pilot. */
 router.get('/:id', function(req,res,next) {
   var pilot_id = req.params.id;
 

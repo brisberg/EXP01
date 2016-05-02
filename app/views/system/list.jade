@@ -1,0 +1,15 @@
+extends ../layouts/layout
+
+mixin systemRow(system)
+  tr(id="system-#{ system._id }")
+    td: a(href="/system/#{ system._id }")= system.name
+
+block content
+  h1 System List:
+  table
+    thead
+      tr
+        th Name
+    tbody
+      - each system in systems
+        +systemRow(system)
