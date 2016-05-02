@@ -16,12 +16,12 @@ router.get('/list', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   var system_id = req.params.id;
 
-  System.findById(system_id, function(err, record) {
+  System.findById(system_id).populate('wares').exec(function(err, record) {
     if (err) return res.status(422).send('Problem loading the system record:', err.message);
     if (!record) return res.status(404).send('Couldn\'nt find the system');
 
       res.render('system/show', { title: 'System', system:record });
-  }).populate('wares');
+  });
 });
 
 module.exports = router;

@@ -3,6 +3,7 @@
  */
 
 var mongoose = require('mongoose');
+var Ware = require('./wareModel');
 
 var schema = mongoose.Schema({
     name: String,

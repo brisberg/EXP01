@@ -1,0 +1,21 @@
+extends ../layouts/layout
+
+block content
+  h1 Pilot
+  p Name: #{ pilot.name }
+
+  p Inventory:
+  table
+    thead
+      tr
+        th Name
+        th Price
+        th Quantity
+    tbody
+      - each record in pilot.inventory
+        tr
+          td #{ record.ware.name }
+          td #{ record.ware.baseValue }
+          td #{ record.quantity }
+
+  a.button(href='/pilot/list') Back

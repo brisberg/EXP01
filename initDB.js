@@ -37,12 +37,18 @@ if (app.get('env') === 'development') {
         // pilots
         console.log('saving Brennen');
         var brennen = new Pilot({name: 'Brennen'});
+        brennen.save();
 
         Ware.findOne({ name: 'Trillium'}, function(err, doc) {
             brennen.inventory.push({'ware': doc, 'quantity':5});
+            console.log('\tBrennen carrying Trillium');
             brennen.save();
         });
-        brennen.save();
+        Ware.findOne({ name: 'Dalaxian Wheat'}, function(err, doc) {
+            brennen.inventory.push({'ware': doc, 'quantity':240});
+            console.log('\tBrennen carrying Dalaxian Wheat');
+            brennen.save();
+        });
 
         console.log('saving Xin\'ui');
         new Pilot({name: 'Xin\'ui'}).save();
