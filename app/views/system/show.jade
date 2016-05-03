@@ -5,16 +5,24 @@ block content
   p Welcome to #{ system.subTitle }
   p Population: #{ system.population } billion
 
-  p Wares:
-  table
-    thead
-      tr
-        th Name
-        th Price
-    tbody
-      - each ware in system.wares
+  form.form-horizontal(action="/system/trade", method="post")
+    p Wares:
+    table
+      thead
         tr
-          td #{ ware.name }
-          td #{ ware.baseValue }
+          th Name
+          th Price
+          th Quantity
+      tbody
+        - each ware in system.wares
+          .form-group
+            tr
+              td #{ ware.name }
+              td #{ ware.baseValue }
+              td
+                input(type="text", name="#{ ware.name }")
+        .form-group
+          .col-sm-offset-2
+            button(type="submit") Execute Order
 
   a.button(href='/system/list') Back
