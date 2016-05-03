@@ -17,7 +17,7 @@ router.get('/:id', function (req, res, next) {
 
     Pilot.findById(pilot_id).populate('inventory.ware').exec(function (err, pilot) {
         if (err) return res.status(422).send('Problem loading the pilot:', error.message);
-        if (!pilot) return res.status(404).send('Couldn\'nt find the pilot');
+        if (!pilot) return res.status(404).send('Couldn\'t find the pilot');
 
         console.log(pilot.inventory);
         res.render('pilot/show', {title: 'Pilot', pilot: pilot});

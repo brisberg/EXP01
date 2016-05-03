@@ -7,6 +7,7 @@ var Ware = require('./wareModel');
 
 var schema = mongoose.Schema({
     name: String,
+    cash: Number,
     inventory: [
       {ware: {type: mongoose.Schema.Types.ObjectId, ref: 'wares'}, quantity: Number}
     ],

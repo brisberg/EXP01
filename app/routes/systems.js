@@ -18,7 +18,7 @@ router.get('/:id', function(req, res, next) {
 
   System.findById(system_id).populate('wares').exec(function(err, record) {
     if (err) return res.status(422).send('Problem loading the system record:', err.message);
-    if (!record) return res.status(404).send('Couldn\'nt find the system');
+    if (!record) return res.status(404).send('Couldn\'t find the system');
 
       res.render('system/show', { title: 'System', system:record });
   });

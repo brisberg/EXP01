@@ -23,13 +23,13 @@ if (app.get('env') === 'development') {
     Ware.remove({})
     .then(function() {
         console.log('dropping Pilots');
-        return Pilot.remove({})
+        return Pilot.remove({});
     }).then(function() {
         console.log('dropping Users');
-        return User.remove({})
+        return User.remove({});
     }).then(function() {
         console.log('dropping Systems');
-        return System.remove({})
+        return System.remove({});
     }).then(function() {
 
             console.log('\ninserting Wares');
@@ -53,20 +53,20 @@ if (app.get('env') === 'development') {
 
             // pilots
             console.log('adding Brennen');
-            var brennen = new Pilot({name: 'Brennen', inventory: [
+            var brennen = new Pilot({name: 'Brennen', cash: 10000, inventory: [
                 { ware: trillium, quantity: 5 },
                 { ware: dalaxianWheat, quantity: 240 }
             ]});
             console.log('adding Xin\'ui');
-            var xin = new Pilot({name: 'Xin\'ui', inventory: [
+            var xin = new Pilot({name: 'Xin\'ui', cash: 4000, inventory: [
                 { ware: dalaxianWheat, quantity: 120 }
             ]});
             console.log('adding Karas');
-            var karas = new Pilot({name: 'Karas', inventory: [
+            var karas = new Pilot({name: 'Karas', cash: 5000, inventory: [
                 { ware: microchips, quantity: 8 }
             ]});
             console.log('adding Bria');
-            var bria = new Pilot({name: 'Bria'});
+            var bria = new Pilot({name: 'Bria', cash: 20000});
 
             console.log('\ninserting Users');
             // users
@@ -76,7 +76,7 @@ if (app.get('env') === 'development') {
             console.log('\nsaving Wares');
             return trillium.save()
             .then(function() {
-                return dalaxianWheat.save()
+                return dalaxianWheat.save();
             }).then(function() {
                 return microchips.save();
             }).then(function() {
