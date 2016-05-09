@@ -17,6 +17,8 @@ if (app.get('env') === 'development') {
     var User = require('./app/models/userModel');
     var System = require('./app/models/systemModel');
 
+    var docs = {};
+
     console.log('initDB');
 
     console.log('dropping Wares');
@@ -32,69 +34,53 @@ if (app.get('env') === 'development') {
         return System.remove({});
     }).then(function() {
 
-            console.log('\ninserting Wares');
             // wares
+            console.log('\ninserting Wares');
             console.log('adding Trillium');
-            var trillium = new Ware({name:'Trillium', baseValue:400});
+            docs.trillium = new Ware({name:'Trillium', baseValue:400});
             console.log('adding Dalaxian Wheat');
-            var dalaxianWheat = new Ware({name:'Dalaxian Wheat', baseValue:50});
+            docs.dalaxianWheat = new Ware({name:'Dalaxian Wheat', baseValue:50});
             console.log('adding Microchips');
-            var microchips = new Ware({name:'Microchips', baseValue:1000});
-            microchips.save();
+            docs.microchips = new Ware({name:'Microchips', baseValue:1000});
 
-            console.log('\ninserting Systems');
             // systems
+            console.log('\ninserting Systems');
             console.log('adding Earth');
-            var earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:
+            docs.earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:
                 [
-                    trillium,
-                    microchips
+                    docs.trillium,
+                    docs.microchips
                 ]});
 
             // pilots
+            console.log('\ninserting Pilots');
             console.log('adding Brennen');
-            var brennen = new Pilot({name: 'Brennen', cash: 10000, inventory: [
-                { ware: trillium, quantity: 5 },
-                { ware: dalaxianWheat, quantity: 240 }
+            docs.brennen = new Pilot({name: 'Brennen', cash: 10000, inventory: [
+                { ware: docs.trillium, quantity: 5 },
+                { ware: docs.dalaxianWheat, quantity: 240 }
             ]});
             console.log('adding Xin\'ui');
-            var xin = new Pilot({name: 'Xin\'ui', cash: 4000, inventory: [
-                { ware: dalaxianWheat, quantity: 120 }
+            docs.xin = new Pilot({name: 'Xin\'ui', cash: 4000, inventory: [
+                { ware: docs.dalaxianWheat, quantity: 120 }
             ]});
             console.log('adding Karas');
-            var karas = new Pilot({name: 'Karas', cash: 5000, inventory: [
-                { ware: microchips, quantity: 8 }
+            docs.karas = new Pilot({name: 'Karas', cash: 5000, inventory: [
+                { ware: docs.microchips, quantity: 8 }
             ]});
             console.log('adding Bria');
-            var bria = new Pilot({name: 'Bria', cash: 20000});
+            docs.bria = new Pilot({name: 'Bria', cash: 20000});
 
-            console.log('\ninserting Users');
             // users
+            console.log('\ninserting Users');
             console.log('adding Brandon');
-            var brandon = new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'});
+            docs.brandon = new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'});
 
-            console.log('\nsaving Wares');
-            return trillium.save()
-            .then(function() {
-                return dalaxianWheat.save();
-            }).then(function() {
-                return microchips.save();
-            }).then(function() {
-                console.log('saving Systems');
-                return earth.save();
-            }).then(function() {
-                console.log('saving Pilots');
-                return brennen.save();
-            }).then(function() {
-                return xin.save();
-            }).then(function() {
-                return karas.save();
-            }).then(function() {
-                return bria.save();
-            }).then(function() {
-                console.log('saving Users');
-                return brandon.save();
-            });
+            // Write to db
+            console.log('\nSaving all docs');
+            return global.Promise.all(Object.keys(docs).map(function(doc) {
+                console.log('\tsaving ' + doc + '');
+                return docs[doc].save();
+            }));
     }).then(function() {
         process.exit();
     });

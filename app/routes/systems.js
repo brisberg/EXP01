@@ -24,4 +24,16 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+/* POST trade with a system. */
+router.post('/:id/trade', function(req, res, next) {
+  var system_id = req.params.id;
+
+  System.findById(system_id).populate('wares').exec(function(err, record) {
+    if (err) return res.status(422).send('Problem loading the system record:', err.message);
+    if (!record) return res.status(404).send('Couldn\'t find the system');
+
+      res.render('system/show', { title: 'System', system:record });
+  });
+});
+
 module.exports = router;
