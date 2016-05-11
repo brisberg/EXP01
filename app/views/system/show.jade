@@ -5,7 +5,7 @@ block content
   p Welcome to #{ system.subTitle }
   p Population: #{ system.population } billion
 
-  form.form-horizontal(action="/system/trade", method="post")
+  form.form-horizontal(action="/system/#{ system._id }/trade", method="post")
     p Wares:
     table
       thead

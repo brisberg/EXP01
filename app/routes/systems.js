@@ -32,7 +32,7 @@ router.post('/:id/trade', function(req, res, next) {
     if (err) return res.status(422).send('Problem loading the system record:', err.message);
     if (!record) return res.status(404).send('Couldn\'t find the system');
 
-      res.render('system/show', { title: 'System', system:record });
+    res.status(302).redirect('/system/list');
   });
 });
 
