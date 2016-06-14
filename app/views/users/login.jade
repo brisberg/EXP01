@@ -2,20 +2,16 @@
 
 extends ../layouts/layout.jade
 block content
-   h1 Join teh web's premiere adventure venue
-   form.form-horizontal(action="/user/register", method="post")
+   h1 Login:
+   form.form-horizontal(action="/user/login", method="post")
       .form-group
          label.control-label.col-sm-2 Username
          .col-sm-10
             input(type="text", name="name")
-      .form-group
-         label.control-label.col-sm-2 Email
-         .col-sm-10
-            input(type="email", name="email")
       .form-group
          label.control-label.col-sm-2 Password
          .col-sm-10
             input(type="password", name="password")
       .form-gorup
          .col-sm-offset-2
-            button(type="submit") Start yer adventure
+            button(type="submit") Login

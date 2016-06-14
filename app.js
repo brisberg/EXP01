@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var packageJson = require('./package.json');
 
@@ -40,12 +43,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app/public')));
 
+// set up passport
+//require('./app/config/passport')(passport);
+app.use(session({ secret : 'thisisatestsecret' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 app.use('/', route('index'));
 app.use('/pilot', route('pilots'));
 app.use('/system', route('systems'));
 app.use('/map', route('map'));
-app.use('/signup', route('user'));
+app.use('/user', route('user'));
 
+// Passport config
+require('./app/config/passport.js');
 
 // db bootstrap
 require('./app/config/database')(process.env.DATABASE_URL || 'mongodb://localhost/exp01');

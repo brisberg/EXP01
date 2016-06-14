@@ -4,7 +4,9 @@
 
 var mongoose = require('mongoose'),
     validate = require('mongoose-validate'),
-    bcrypt   = require('bcrypt-nodejs');
+    bcrypt   = require('bcrypt-nodejs'),
+    passportLocalMongoose = require('passport-local-mongoose');
+
 var SALT_WORK_FACTOR = 10;
 var REQUIRED_PASSWORD_LENGTH = 8;
 
@@ -30,6 +32,8 @@ schema.pre('save', function(next) {
         next();
     });
 });
+
+schema.plugin(passportLocalMongoose);
 
 var Model = mongoose.model('users', schema);
 
