@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var logger = require('winston');
 var Pilot = require('../models/pilotModel');
 
 /* GET pilot listing. */
@@ -19,7 +20,7 @@ router.get('/:id', function (req, res, next) {
         if (err) return res.status(422).send('Problem loading the pilot:', error.message);
         if (!pilot) return res.status(404).send('Couldn\'t find the pilot');
 
-        console.log(pilot.inventory);
+        logger.info("" + pilot.inventory);
         res.render('pilot/show', {title: 'Pilot', pilot: pilot});
     });
 });

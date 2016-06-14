@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var winston = require('winston');
 
 var packageJson = require('./package.json');
 
@@ -31,13 +32,16 @@ var helper = function(path) {
   return require(appPath("app/helpers/" + path));
 };
 
+// set logger file
+winston.add(winston.transports.File, { filename: 'winston.log' });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 app.set('view options', { pretty: app.get('env') === 'development'});
 
 app.use(favicon(path.join(__dirname, 'app/public', 'favicon.ico')));
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
