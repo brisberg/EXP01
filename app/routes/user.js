@@ -15,6 +15,7 @@ router.post('/signupaction', function(req, res, next) {
     });
     u.save(function(err) {
         if (err) {
+            logger.error('Saving New User' + err.message);
             res.status(422).send('Problem: ' + err.message);
         } else {
             res.status(200).send('Welcome to the game.');
@@ -34,6 +35,7 @@ router.post('/register', function(req, res) {
     }),
         function(err, user) {
         if (err) {
+            logger.error('Create User: ' + err.mesasge);
             res.status(422).send('Problem: ' + err.message);
         }
 

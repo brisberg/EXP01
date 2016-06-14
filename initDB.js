@@ -4,6 +4,7 @@
 
 var express = require('express');
 var path = require('path');
+var logger = require('winston');
 
 var app = express();
 
@@ -19,33 +20,33 @@ if (app.get('env') === 'development') {
 
     var docs = {};
 
-    console.log('initDB');
+    logger.info('initDB');
 
-    console.log('dropping Wares');
+    logger.info('dropping Wares');
     Ware.remove({})
     .then(function() {
-        console.log('dropping Pilots');
+        logger.info('dropping Pilots');
         return Pilot.remove({});
     }).then(function() {
-        console.log('dropping Users');
+        logger.info('dropping Users');
         return User.remove({});
     }).then(function() {
-        console.log('dropping Systems');
+        logger.info('dropping Systems');
         return System.remove({});
     }).then(function() {
 
             // wares
-            console.log('\ninserting Wares');
-            console.log('adding Trillium');
+            logger.info('inserting Wares');
+            logger.info('\tadding Trillium');
             docs.trillium = new Ware({name:'Trillium', baseValue:400});
-            console.log('adding Dalaxian Wheat');
+            logger.info('\tadding Dalaxian Wheat');
             docs.dalaxianWheat = new Ware({name:'Dalaxian Wheat', baseValue:50});
-            console.log('adding Microchips');
+            logger.info('\tadding Microchips');
             docs.microchips = new Ware({name:'Microchips', baseValue:1000});
 
             // systems
-            console.log('\ninserting Systems');
-            console.log('adding Earth');
+            logger.info('inserting Systems');
+            logger.info('\tadding Earth');
             docs.earth = new System({ name: 'Earth', subTitle: 'the Sol System', population: 8.54, wares:
                 [
                     docs.trillium,
@@ -53,32 +54,32 @@ if (app.get('env') === 'development') {
                 ]});
 
             // pilots
-            console.log('\ninserting Pilots');
-            console.log('adding Brennen');
+            logger.info('inserting Pilots');
+            logger.info('\tadding Brennen');
             docs.brennen = new Pilot({name: 'Brennen', cash: 10000, inventory: [
                 { ware: docs.trillium, quantity: 5 },
                 { ware: docs.dalaxianWheat, quantity: 240 }
             ]});
-            console.log('adding Xin\'ui');
+            logger.info('\tadding Xin\'ui');
             docs.xin = new Pilot({name: 'Xin\'ui', cash: 4000, inventory: [
                 { ware: docs.dalaxianWheat, quantity: 120 }
             ]});
-            console.log('adding Karas');
+            logger.info('\tadding Karas');
             docs.karas = new Pilot({name: 'Karas', cash: 5000, inventory: [
                 { ware: docs.microchips, quantity: 8 }
             ]});
-            console.log('adding Bria');
+            logger.info('\tadding Bria');
             docs.bria = new Pilot({name: 'Bria', cash: 20000});
 
             // users
-            console.log('\ninserting Users');
-            console.log('adding Brandon');
+            logger.info('inserting Users');
+            logger.info('\tadding Brandon');
             docs.brandon = new User({name: 'Brandon', email: 'brandon@example.com', passwordHash:'password'});
 
             // Write to db
-            console.log('\nSaving all docs');
+            logger.info('Saving all docs');
             return global.Promise.all(Object.keys(docs).map(function(doc) {
-                console.log('\tsaving ' + doc + '');
+                logger.info('\tsaving ' + doc + '');
                 return docs[doc].save();
             }));
     }).then(function() {
@@ -86,5 +87,5 @@ if (app.get('env') === 'development') {
     });
 }
 else {
-    console.log('Only run initDb in development');
+    logger.error('Only run initDb in development');
 }
