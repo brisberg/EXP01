@@ -87,5 +87,5 @@ if (app.get('env') === 'development') {
     });
 }
 else {
-    logger.log('Only run initDb in development');
+    logger.error('Only run initDb in development');
 }
