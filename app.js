@@ -33,6 +33,9 @@ var helper = function(path) {
 };
 
 // set logger file
+if (app.get('env') === 'development') {
+  winston.level = 'debug';
+}
 winston.add(winston.transports.File, { filename: 'winston.log' });
 
 // view engine setup

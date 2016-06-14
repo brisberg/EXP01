@@ -1,10 +1,12 @@
 var express = require('express');
+var logger = require('winston');
 var router = express.Router();
 var System = require('../models/systemModel');
 var Ware = require('../models/wareModel');
 
 /* GET system list listing. */
 router.get('/list', function(req, res, next) {
+  logger.debug('Router: /systems/list');
   System.find({}, function(err, records) {
     if (err) return res.status(422).send('Problem loading the records:', err.message);
 
@@ -14,6 +16,7 @@ router.get('/list', function(req, res, next) {
 
 /* GET specific system page. */
 router.get('/:id', function(req, res, next) {
+  logger.debug('Router: /systems/' + req.params.id);
   var system_id = req.params.id;
 
   System.findById(system_id).populate('wares').exec(function(err, record) {
@@ -26,6 +29,7 @@ router.get('/:id', function(req, res, next) {
 
 /* POST trade with a system. */
 router.post('/:id/trade', function(req, res, next) {
+  logger.debug('Router: /systems/' + req.params.id + '/trade');
   var system_id = req.params.id;
 
   System.findById(system_id).populate('wares').exec(function(err, record) {

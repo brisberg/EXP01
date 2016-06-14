@@ -5,6 +5,7 @@ var Pilot = require('../models/pilotModel');
 
 /* GET pilot listing. */
 router.get('/list', function (req, res, next) {
+    logger.debug('Router: /pilots/list');
     Pilot.find({}, function (err, records) {
         if (err) return res.status(422).send('Problem loading the records:', err.message);
 
@@ -14,6 +15,7 @@ router.get('/list', function (req, res, next) {
 
 /* GET specific pilot. */
 router.get('/:id', function (req, res, next) {
+    logger.debug('Router: /pilots/' + req.params.id);
     var pilot_id = req.params.id;
 
     Pilot.findById(pilot_id).populate('inventory.ware').exec(function (err, pilot) {
