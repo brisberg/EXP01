@@ -87,7 +87,7 @@ app.use(expressWinston.errorLogger({
       json: true,
       colorize: true
     }),
-    new winston.transports.File({ filename: 'winston.log' })
+    new winston.transports.File({ filename: 'errors.log' })
   ]
 }));
 
