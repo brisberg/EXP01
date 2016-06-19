@@ -37,3 +37,6 @@ jspm_packages
 
 .idea
 EXP01.iml
+
+# MongoDB Backups
+backup
