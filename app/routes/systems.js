@@ -6,7 +6,7 @@ var Ware = require('../models/wareModel');
 /* GET system list listing. */
 router.get('/list', function(req, res, next) {
   System.find({}, function(err, records) {
-    if (err) return res.status(422).send('Problem loading the records:', err.message);
+    if (err) return next(err);
 
     res.render('system/list', { title: 'System List', systems: records });
   });
@@ -17,7 +17,7 @@ router.get('/:id', function(req, res, next) {
   var system_id = req.params.id;
 
   System.findById(system_id).populate('wares').exec(function(err, record) {
-    if (err) return res.status(422).send('Problem loading the system record:', err.message);
+    if (err) return next(err);
     if (!record) return res.status(404).send('Couldn\'t find the system');
 
       res.render('system/show', { title: 'System', system:record });
@@ -29,7 +29,7 @@ router.post('/:id/trade', function(req, res, next) {
   var system_id = req.params.id;
 
   System.findById(system_id).populate('wares').exec(function(err, record) {
-    if (err) return res.status(422).send('Problem loading the system record:', err.message);
+    if (err) return next(err);
     if (!record) return res.status(404).send('Couldn\'t find the system');
 
     res.status(302).redirect('/system/list');

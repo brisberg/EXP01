@@ -3,6 +3,7 @@
  */
 
 var express = require('express');
+var logger = require('winston');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/userModel');
@@ -15,6 +16,7 @@ router.post('/signupaction', function(req, res, next) {
     });
     u.save(function(err) {
         if (err) {
+            logger.error('Couldn\'t create user: ' + err.message);
             res.status(422).send('Problem: ' + err.message);
         } else {
             res.status(200).send('Welcome to the game.');
@@ -34,6 +36,7 @@ router.post('/register', function(req, res) {
     }),
         function(err, user) {
         if (err) {
+            logger.error('Couldn\'t create user: ' + err.message);
             res.status(422).send('Problem: ' + err.message);
         }
 
