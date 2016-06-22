@@ -25,6 +25,15 @@
     "winston": "^2.2.0"
   },
   "devDependencies": {
-    "mongoose-validate": "0.0.5"
+    "chai": "^3.5.0",
+    "karma": "^0.13.22",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^1.0.1",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon": "^1.0.5",
+    "mocha": "^2.5.3",
+    "mongoose-validate": "0.0.5",
+    "phantomjs-prebuilt": "^2.1.7",
+    "sinon": "^1.17.4"
   }
 }
