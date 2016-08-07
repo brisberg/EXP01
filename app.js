@@ -74,11 +74,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', route('index'));
-app.use('/pilot', route('pilots'));
-app.use('/system', route('systems'));
-app.use('/map', route('map'));
-app.use('/user', route('user'));
+app.use('/', route('routes'));
 
 // express winston error logger (after the router)
 app.use(expressWinston.errorLogger({

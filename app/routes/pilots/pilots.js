@@ -1,7 +1,7 @@
 var express = require('express');
 var logger = require('winston');
 var router = express.Router();
-var Pilot = require('../models/pilotModel');
+var Pilot = require('../../models/pilotModel');
 
 /* GET pilot listing. */
 router.get('/list', function (req, res, next) {

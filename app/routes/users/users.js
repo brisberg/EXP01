@@ -6,7 +6,7 @@ var express = require('express');
 var logger = require('winston');
 var router = express.Router();
 var passport = require('passport');
-var User = require('../models/userModel');
+var User = require('../../models/userModel');
 
 router.post('/signupaction', function(req, res, next) {
     var u = new User({

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var System = require('../models/systemModel');
-var Ware = require('../models/wareModel');
+var System = require('../../models/systemModel');
+var Ware = require('../../models/wareModel');
 
 /* GET system list listing. */
 router.get('/list', function(req, res, next) {
