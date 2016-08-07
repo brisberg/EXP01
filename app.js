@@ -42,10 +42,10 @@ winston.add(winston.transports.File, { filename: 'winston.log' });
 // expressWinston request logger middleware (before the router)
 app.use(expressWinston.logger({
       transports: [
-        new winston.transports.Console({
-          json: true,
-          colorize: true
-        }),
+        // new winston.transports.Console({
+        //   json: true,
+        //   colorize: true
+        // }),
         new winston.transports.File({ filename: 'winston.log' })
       ],
       meta: true, // optional: control whether you want to log the meta data about the request (default to true)
