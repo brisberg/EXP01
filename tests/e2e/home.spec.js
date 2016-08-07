@@ -8,7 +8,7 @@ describe('Home', function () {
     done();
   });
 
-  it('should respond with a title on / GET', function(done) {
+  it('should respond with html on / GET', function(done) {
     chai.request(server)
       .get('/')
       .end(function(err, res) {

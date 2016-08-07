@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var getHome = require('./homeHandlers.js');
+var home = require('./homeHandlers.js');
 
 /* GET home page. */
-router.get('/', getHome);
+router.get('/', home.getHome);
 
 module.exports = router;

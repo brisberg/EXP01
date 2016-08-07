@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var getMaps = require('./mapsHandlers.js');
+var maps = require('./mapsHandlers.js');
 
 /* GET map list. */
-router.get('/', getMaps);
+router.get('/', maps.getMaps);
 
 module.exports = router;
