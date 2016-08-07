@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var getHome = require('./homeHandlers.js');
+var getMaps = require('./mapsHandlers.js');
 
-/* GET home page. */
-router.get('/', getHome);
+/* GET map list. */
+router.get('/', getMaps);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 var sinon = require('sinon');
 
-var getHome = require('../../../app/routes/home/getHome.js');
+var getHome = require('../../../../app/routes/home/getHome.js');
 
 describe('Home Route GET', function() {
   it('should render the index template for / GET', function() {
