@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var users = require('./usersHandlers.js');
+var users = require('./handlers.js');
 
 /* POST signup new user. */
 router.post('/signupaction', users.signup);

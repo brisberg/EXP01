@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var pilots = require('./pilotsHandlers.js');
+var pilots = require('./handlers.js');
 
 /* GET pilot list. */
 router.get('/list', pilots.listPilots);

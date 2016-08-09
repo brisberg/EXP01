@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+// TODO rest
+// var homeRouter = require('./home/routes.js');
+
 router.use('/', require('./home/routes.js'));
 router.use('/pilot', require('./pilots/routes.js'));
 router.use('/system', require('./systems/routes.js'));

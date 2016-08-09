@@ -1,6 +1,6 @@
 var sinon = require('sinon');
 
-var homeHandlers = require('../../../../app/routes/home/homeHandlers.js');
+var homeHandlers = require('../../../../app/routes/home/handlers.js');
 
 describe('Home Route GET', function() {
   it('should render the index template for / GET', function() {
@@ -10,6 +10,8 @@ describe('Home Route GET', function() {
     spy = res.render = sinon.spy();
 
     homeHandlers.getHome(req, res);
+
     expect(spy.calledOnce).to.equal(true);
+    assert(spy.calledWith('home', { title: 'Space Game' }));
   });
 });

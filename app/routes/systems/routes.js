@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var systems = require('./systemsHandlers.js');
+var systems = require('./handlers.js');
 
 /* GET list systems. */
 router.get('/list', systems.listSystems);
