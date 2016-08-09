@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-// TODO rest
-// var homeRouter = require('./home/routes.js');
+var homeRouter = require('./home/routes.js');
+var pilotsRouter = require('./pilots/routes.js');
+var systemsRouter = require('./systems/routes.js');
+var mapRouter = require('./map/routes.js');
+var usersRouter = require('./users/routes.js');
 
-router.use('/', require('./home/routes.js'));
-router.use('/pilot', require('./pilots/routes.js'));
-router.use('/system', require('./systems/routes.js'));
-router.use('/map', require('./map/routes.js'));
-router.use('/user', require('./users/routes.js'));
+router.use('/', homeRouter);
+router.use('/pilot', pilotsRouter);
+router.use('/system', systemsRouter);
+router.use('/map', mapRouter);
+router.use('/user', usersRouter);
 
 module.exports = router;
